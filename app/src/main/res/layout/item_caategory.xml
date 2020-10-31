@@ -17,6 +17,7 @@
     <ImageView
         android:id="@+id/imageCategory"
         android:layout_width="@dimen/_60sdp"
+        android:background="@drawable/round_button"
         android:layout_height="@dimen/_60sdp"
         android:layout_centerVertical="true" />
 
