@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Created by Muhammad Mehroz Afzal on 2020.
+  -->
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Drop Shadow Stack -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="10dp" />
+
+            <padding
+                android:bottom="3dp"
+                android:left="1dp"
+                android:right="3dp"
+                android:top="1dp" />
+            <solid android:color="#30cbcbcb" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="10dp" />
+            <padding
+                android:bottom="3dp"
+                android:left="1dp"
+                android:right="3dp"
+                android:top="1dp" />
+            <solid android:color="#50bababa" />
+        </shape>
+    </item>
+
+    <!-- Background -->
+
+
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="10dp" />
+            <solid android:color="#fff" />
+        </shape>
+    </item>
+</layer-list>

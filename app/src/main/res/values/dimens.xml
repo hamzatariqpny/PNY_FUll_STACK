@@ -1,0 +1,87 @@
+<!--
+  ~ Created by Muhammad Mehroz Afzal on 2020.
+  -->
+
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">@dimen/_16sdp</dimen>
+    <dimen name="activity_vertical_margin">@dimen/_16sdp</dimen>
+
+    <!-- List style -->
+    <dimen name="card_elevation">6sp</dimen>
+    <dimen name="card_margin">8sp</dimen>
+    <dimen name="normal_padding">10sp</dimen>
+    <dimen name="small_padding">6sp</dimen>
+    <dimen name="textview_size_normal">14sp</dimen>
+    <dimen name="image_size">180sp</dimen>
+    <dimen name="country_image_size">160sp</dimen>
+    <dimen name="textview_size_small">12sp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+
+    <!-- generic dimen for views -->
+    <dimen name="size_xxxxxxxHuge">@dimen/_300sdp</dimen>
+    <dimen name="size_xxxxxxHuge">@dimen/_250sdp</dimen>
+    <dimen name="size_xxxxxHuge">@dimen/_200sdp</dimen>
+    <dimen name="size_xxxxHuge">@dimen/_120sdp</dimen>
+    <dimen name="size_xxxHuge">@dimen/_100sdp</dimen>
+    <dimen name="size_xxHuge">@dimen/_80sdp</dimen>
+    <dimen name="size_xHuge">@dimen/_60sdp</dimen>
+    <dimen name="size_huge">@dimen/_40sdp</dimen>
+    <dimen name="size_xLarge">@dimen/_30sdp</dimen>
+    <dimen name="size_large">@dimen/_24sdp</dimen>
+    <dimen name="size_xNormal">@dimen/_20sdp</dimen>
+    <dimen name="size_normal">@dimen/_14sdp</dimen>
+    <dimen name="size_small">@dimen/_10sdp</dimen>
+    <dimen name="size_xTiny">@dimen/_4sdp</dimen>
+    <dimen name="size_tiny">@dimen/_2sdp</dimen>
+
+
+    <!--generic dimens for fonts-->
+    <dimen name="title">@dimen/_15ssp</dimen>
+    <dimen name="title2">@dimen/_14ssp</dimen>
+    <dimen name="caption">@dimen/_11ssp</dimen>
+    <dimen name="heading">@dimen/_16ssp</dimen>
+    <dimen name="font_size_xSmall">@dimen/_13ssp</dimen>
+    <dimen name="font_size_small">@dimen/_12ssp</dimen>
+    <dimen name="font_size_xxMini">@dimen/_11ssp</dimen>
+    <dimen name="font_size_xMini">@dimen/_10ssp</dimen>
+    <dimen name="font_size_mini">@dimen/_9ssp</dimen>
+    <dimen name="font_size_tiny">@dimen/_8ssp</dimen>
+    <dimen name="font_size_large">@dimen/_15ssp</dimen>
+    <dimen name="font_size_xLarge">@dimen/_17ssp</dimen>
+    <dimen name="font_size_xxLarge">@dimen/_18ssp</dimen>
+    <dimen name="font_size_xxxLarge">@dimen/_20ssp</dimen>
+    <dimen name="font_size_xxxxLarge">@dimen/_25ssp</dimen>
+    <dimen name="font_size_xxxxxLarge">@dimen/_30ssp</dimen>
+
+
+    <!-- generic padding for views -->
+    <dimen name="padding_huge">@dimen/_40sdp</dimen>
+    <dimen name="padding_large">@dimen/_24sdp</dimen>
+    <dimen name="padding_xNormal">@dimen/_20sdp</dimen>
+    <dimen name="padding_normal">@dimen/_14sdp</dimen>
+    <dimen name="padding_xSmall">@dimen/_12sdp</dimen>
+    <dimen name="padding_small">@dimen/_10sdp</dimen>
+    <dimen name="padding_xTiny">@dimen/_8sdp</dimen>
+    <dimen name="padding_tiny">@dimen/_4sdp</dimen>
+
+    <!-- generic margin for views -->
+    <dimen name="margin_xxxxxHuge">@dimen/_250sdp</dimen>
+    <dimen name="margin_xxxxHuge">@dimen/_180sdp</dimen>
+    <dimen name="margin_xxxHuge">@dimen/_120sdp</dimen>
+    <dimen name="margin_xxHuge">@dimen/_80sdp</dimen>
+    <dimen name="margin_xHuge">@dimen/_60sdp</dimen>
+    <dimen name="margin_huge">@dimen/_40sdp</dimen>
+    <dimen name="margin_xLarge">@dimen/_30sdp</dimen>
+    <dimen name="margin_large">@dimen/_24sdp</dimen>
+    <dimen name="margin_xNormal">@dimen/_20sdp</dimen>
+    <dimen name="margin_normal">@dimen/_14sdp</dimen>
+    <dimen name="margin_small">@dimen/_10sdp</dimen>
+    <dimen name="margin_xTiny">@dimen/_4sdp</dimen>
+    <dimen name="margin_tiny">@dimen/_2sdp</dimen>
+
+    <dimen name="custom_profile_image">50dp</dimen>
+    <dimen name="custom_profile_padding">2dp</dimen>
+
+</resources>

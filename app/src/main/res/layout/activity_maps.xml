@@ -1,0 +1,75 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:weightSum="5">
+
+
+        <EditText
+            android:id="@+id/TFaddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3" />
+
+        <Button
+            android:id="@+id/Bsearch"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_weight="1"
+            android:onClick="onSearch"
+            android:text="Search" />
+
+        <Button
+            android:id="@+id/Btype"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:layout_gravity="right"
+            android:layout_weight="1"
+            android:nestedScrollingEnabled="false"
+            android:onClick="changeType"
+            android:text="Map Type" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <fragment
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/mMap"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="342dp"
+            android:layout_height="match_parent"
+            tools:context=".MapsActivity" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/Bzoomin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="In" />
+
+            <Button
+                android:id="@+id/Bzoomout"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/round_button"
+                android:layout_gravity="center_vertical"
+                android:text="out" />
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
