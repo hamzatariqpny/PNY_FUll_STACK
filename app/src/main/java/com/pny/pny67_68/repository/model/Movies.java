@@ -1,4 +1,4 @@
-package com.pny.pny67_68.ui.model;
+package com.pny.pny67_68.repository.model;
 
 public class Movies {
 

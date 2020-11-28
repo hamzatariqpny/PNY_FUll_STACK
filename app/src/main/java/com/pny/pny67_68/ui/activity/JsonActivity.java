@@ -1,6 +1,5 @@
-package com.pny.pny67_68.ui;
+package com.pny.pny67_68.ui.activity;
 
-import android.opengl.Visibility;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -18,7 +17,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.pny.pny67_68.R;
-import com.pny.pny67_68.ui.model.CategoriesData;
+import com.pny.pny67_68.repository.model.CategoriesData;
 import com.pny.pny67_68.ui.wm.CategoryAdapter;
 
 import org.json.JSONArray;

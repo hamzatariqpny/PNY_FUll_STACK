@@ -1,6 +1,4 @@
-package com.pny.pny67_68.ui.model;
-
-import java.util.Date;
+package com.pny.pny67_68.repository.model;
 
 public class CategoriesData {
 

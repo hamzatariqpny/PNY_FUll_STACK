@@ -12,9 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.pny.pny67_68.R;
-import com.pny.pny67_68.ui.db.AppDataBase;
-import com.pny.pny67_68.ui.db.Contact;
-import com.pny.pny67_68.ui.model.CategoriesData;
+import com.pny.pny67_68.repository.model.CategoriesData;
 
 import java.util.List;
 

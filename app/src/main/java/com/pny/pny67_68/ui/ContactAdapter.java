@@ -1,23 +1,19 @@
 package com.pny.pny67_68.ui;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.pny.pny67_68.R;
-import com.pny.pny67_68.ui.db.AppDataBase;
-import com.pny.pny67_68.ui.db.Contact;
+import com.pny.pny67_68.repository.db.AppDataBase;
+import com.pny.pny67_68.repository.db.Contact;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.contactViewHolder> {
@@ -57,9 +53,6 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.contactV
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                //appDataBase.contactDao().updateContact(getEditContact(contactModel));
-                //activity.startActivity(new Intent(activity,));
                 appDataBase.contactDao().deleteContact(getEditContact(contactModel));
                 contactModels = appDataBase.contactDao().getAll();
                 notifyDataSetChanged();

@@ -1,4 +1,4 @@
-package com.pny.pny67_68.ui.db;
+package com.pny.pny67_68.repository.db;
 
 import androidx.room.Dao;
 import androidx.room.Delete;

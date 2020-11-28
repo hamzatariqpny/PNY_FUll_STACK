@@ -20,12 +20,8 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".ui.JsonActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".ui.activity.JsonActivity">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -44,9 +40,15 @@
             android:label="@string/title_activity_maps">
 
         </activity>
-        <activity android:name=".ui.activity.DatabaseActivity"></activity>
+        <activity android:name=".ui.contactDb.DatabaseActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".ui.activity.RecyclerViewActvity" />
-        <activity android:name=".ui.LayoutsActivity" />
+        <activity android:name=".ui.activity.LayoutsActivity" />
         <activity
             android:name=".ui.activity.WorkManagerActivity"
             android:screenOrientation="portrait" />

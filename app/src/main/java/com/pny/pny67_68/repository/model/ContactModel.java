@@ -1,4 +1,4 @@
-package com.pny.pny67_68.ui;
+package com.pny.pny67_68.repository.model;
 
 public class ContactModel {
 

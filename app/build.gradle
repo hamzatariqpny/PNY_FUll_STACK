@@ -48,6 +48,12 @@ dependencies {
     implementation "com.intuit.sdp:sdp-android:1.0.6"
     implementation "com.intuit.ssp:ssp-android:1.0.6"
 
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
+
+
     implementation 'com.squareup.picasso:picasso:2.71828'
 
 }

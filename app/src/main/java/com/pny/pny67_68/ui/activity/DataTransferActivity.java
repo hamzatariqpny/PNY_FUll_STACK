@@ -20,7 +20,6 @@ public class DataTransferActivity extends AppCompatActivity {
 
         outputShow = findViewById(R.id.outputShow);
 
-
         Intent previousActivityIntent = getIntent();
 
         if(previousActivityIntent != null){
