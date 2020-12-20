@@ -1,11 +1,18 @@
 package com.pny.pny67_68.repository.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class CategoriesData {
 
+    @SerializedName("id")
     public int id;
+    @SerializedName("uuid")
     public String uuid;
+    @SerializedName("categoryName")
     public String categoryName;
+    @SerializedName("description")
     public String description;
+    @SerializedName("icon")
     public String icon;
 
     public int getId() {

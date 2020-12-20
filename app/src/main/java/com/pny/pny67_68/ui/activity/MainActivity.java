@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
                 inputStr = inputEdt.getText().toString();
 
-                Intent goToNextActivity = new Intent(MainActivity.this,DataTransferActivity.class);
+                Intent goToNextActivity = new Intent(MainActivity.this, DataTransferActivity.class);
                 goToNextActivity.putExtra("input_data",inputStr);
                 startActivity(goToNextActivity);
 

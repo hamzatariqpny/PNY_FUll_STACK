@@ -27,8 +27,7 @@ public class ContactViewModel extends ViewModel {
     public void getContact(){
         ContactsLiveData.postValue(appDataBase.contactDao().getAll());
     }
-
-
+    
     // return Contact entity object
     private Contact getContact(String name , String number) {
 
