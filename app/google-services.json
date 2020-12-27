@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "333199066816",
+    "project_id": "pny-full-stack",
+    "storage_bucket": "pny-full-stack.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:333199066816:android:53fcdf1c99334720840f25",
+        "android_client_info": {
+          "package_name": "com.pny.pny67_68"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "333199066816-fflb18m47jlgv63ppguu584qp4v7in4c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pny.pny67_68",
+            "certificate_hash": "e00acc229d4500b35ed269b8560c4c2224600e16"
+          }
+        },
+        {
+          "client_id": "333199066816-6gim4bevik02dreu9ef5u5dgmhhagb35.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIkDTkX6DlBgbl9j7uvEsazy3tmg9BV80"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "333199066816-6gim4bevik02dreu9ef5u5dgmhhagb35.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -19,15 +19,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.activity.retrofit.RetrofitActivity">
+        <activity android:name=".ui.activity.FirebaseSendMessageActivity"></activity>
+        <activity android:name=".ui.activity.FirebaseAuthActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".ui.activity.JsonActivity"></activity>
+        <activity android:name=".ui.activity.retrofit.RetrofitActivity"></activity>
+        <activity android:name=".ui.activity.JsonActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -42,10 +43,8 @@
 
         <activity
             android:name=".ui.activity.MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
-        <activity android:name=".ui.contactDb.DatabaseActivity">
-
-        </activity>
+            android:label="@string/title_activity_maps" />
+        <activity android:name=".ui.contactDb.DatabaseActivity" />
         <activity android:name=".ui.activity.RecyclerViewActvity" />
         <activity android:name=".ui.activity.LayoutsActivity" />
         <activity
