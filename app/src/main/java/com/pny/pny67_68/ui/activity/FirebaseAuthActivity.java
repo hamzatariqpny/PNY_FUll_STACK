@@ -26,7 +26,6 @@ public class FirebaseAuthActivity extends AppCompatActivity {
     TextView loggedInEmail;
     Button registerUser;
     Button loginUser;
-    Button Logout;
 
     String strEmail, strPassword;
 
@@ -42,7 +41,7 @@ public class FirebaseAuthActivity extends AppCompatActivity {
         registerUser = findViewById(R.id.registerUser);
         loginUser = findViewById(R.id.loginUser);
         loggedInEmail = findViewById(R.id.loggedInEmail);
-        Logout = findViewById(R.id.Logout);
+
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -91,7 +90,9 @@ public class FirebaseAuthActivity extends AppCompatActivity {
                                         loggedInEmail.setText(user.getEmail());
                                         String uid = user.getUid();
 
-                                        startActivity(new Intent(FirebaseAuthActivity.this,FirebaseSendMessageActivity.class));
+                                        Intent intent = new Intent(FirebaseAuthActivity.this,FirebaseSendMessageActivity.class);
+                                        intent.putExtra("uid",uid);
+                                        startActivity(intent);
 
                                     }
                                 }else {
@@ -103,21 +104,6 @@ public class FirebaseAuthActivity extends AppCompatActivity {
         });
 
 
-        Logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                firebaseAuth.signOut();
-
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-
-                if(user == null){
-                    loggedInEmail.setText("No user Logged In");
-
-                }
-            }
-        });
-
 
     }
 
@@ -128,7 +114,9 @@ public class FirebaseAuthActivity extends AppCompatActivity {
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
         if(user != null){
-            loggedInEmail.setText(user.getEmail());
+            Intent intent = new Intent(FirebaseAuthActivity.this,FirebaseSendMessageActivity.class);
+            intent.putExtra("uid",user.getUid());
+            startActivity(intent);
         }else {
             loggedInEmail.setText("No user Logged In");
         }
