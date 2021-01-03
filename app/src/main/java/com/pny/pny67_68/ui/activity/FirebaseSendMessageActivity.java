@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +19,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.pny.pny67_68.R;
 import com.pny.pny67_68.repository.model.Movies;
@@ -25,7 +28,7 @@ import com.pny.pny67_68.repository.model.User;
 public class FirebaseSendMessageActivity extends AppCompatActivity {
 
     EditText userName , userPhone , userGender;
-    String strName , strPhone , strGender , strUid;
+    String strName , strPhone , strGender , strUid , StrId;
     Button  updateUserData;
     Button Logout;
 
@@ -41,12 +44,13 @@ public class FirebaseSendMessageActivity extends AppCompatActivity {
         updateUserData = findViewById(R.id.updateUserData);
         Logout = findViewById(R.id.Logout);
 
-        strUid = getIntent().getStringExtra("uid");
+        strUid = getSharedPreferences("user_pref",MODE_PRIVATE).getString("uid","");
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
         DatabaseReference reference = firebaseDatabase.getReference("user");
 
+        getUserData(reference);
 
         updateUserData.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,14 +62,20 @@ public class FirebaseSendMessageActivity extends AppCompatActivity {
 
                 User user = new User();
 
-                user.setUserId(strUid);
+                user.setUserId(StrId);
                 user.setUserName(strName);
                 user.setUserGender(strGender);
                 user.setUserPhone(strPhone);
 
+                SharedPreferences sharedPreferences = getSharedPreferences("user_pref",MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("name", strName);
+                editor.putString("Phone", strPhone);
+                editor.apply();
+
                 reference.child(strUid).setValue(user);
 
-                getUserData(reference);
+                startActivity(new Intent(FirebaseSendMessageActivity.this, UsersActivity.class));
 
             }
         });
@@ -87,6 +97,38 @@ public class FirebaseSendMessageActivity extends AppCompatActivity {
             }
         });
 
+        Query lastQuery = reference.orderByKey().limitToLast(1);
+
+        lastQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull  DataSnapshot dataSnapshot) {
+
+                if(dataSnapshot.hasChildren()){
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+                        User user = snapshot.getValue(User.class);
+
+                        if(user != null) {
+                            int uid = Integer.parseInt(user.userId);
+                            ++uid;
+                            StrId = uid+"";
+                        }else {
+                            StrId = "1" ;
+                        }
+                    }
+                }else {
+                    StrId = "1" ;
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle possible errors.
+            }
+        });
+
     }
 
     public void getUserData(DatabaseReference reference ){
@@ -97,7 +139,9 @@ public class FirebaseSendMessageActivity extends AppCompatActivity {
 
                 User user = snapshot.getValue(User.class);
                 if(user != null) {
-                    Log.d("FirebaseActivity", "Value is: " + user.getUserName());
+                    userName.setText(user.userName);
+                    userPhone.setText(user.userPhone);
+                    userGender.setText(user.userGender);
                 }
 
 

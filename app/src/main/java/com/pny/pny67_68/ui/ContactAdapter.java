@@ -1,6 +1,7 @@
 package com.pny.pny67_68.ui;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,16 +14,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.pny.pny67_68.R;
 import com.pny.pny67_68.repository.db.AppDataBase;
 import com.pny.pny67_68.repository.db.Contact;
+import com.pny.pny67_68.repository.model.User;
+import com.pny.pny67_68.ui.activity.ChatActivity;
 
 import java.util.List;
 
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.contactViewHolder> {
 
     Activity activity;
-    List<Contact> contactModels;
+    List<User> contactModels;
     AppDataBase appDataBase;
 
-    public ContactAdapter(Activity activity, List<Contact> contactModels) {
+    public ContactAdapter(Activity activity, List<User> contactModels) {
         this.activity = activity;
         this.contactModels = contactModels;
         appDataBase =  AppDataBase.getAppDataBase(activity);
@@ -43,22 +46,21 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.contactV
     @Override
     public void onBindViewHolder(@NonNull contactViewHolder holder, final int position) {
 
-        final Contact contactModel = contactModels.get(position);
+        final User user = contactModels.get(position);
 
-        holder.contactName.setText(contactModel.contactName);
-        holder.contactNumber.setText(contactModel.contactNumber);
-
-
+        holder.contactName.setText(user.userName);
+        holder.contactNumber.setText(user.userPhone);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                appDataBase.contactDao().deleteContact(getEditContact(contactModel));
-                contactModels = appDataBase.contactDao().getAll();
-                notifyDataSetChanged();
-
+                Intent intent = new Intent(activity, ChatActivity.class);
+                intent.putExtra("recieverID",user.userId);
+                intent.putExtra("recieverName",user.userName);
+                activity.startActivity(intent);
             }
         });
+
 
     }
 

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -89,6 +90,12 @@ public class FirebaseAuthActivity extends AppCompatActivity {
                                     if(user != null){
                                         loggedInEmail.setText(user.getEmail());
                                         String uid = user.getUid();
+
+                                        SharedPreferences sharedPreferences = getSharedPreferences("user_pref",MODE_PRIVATE);
+                                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                                        editor.putString("uid", uid);
+                                        editor.putString("email", user.getEmail());
+                                        editor.apply();
 
                                         Intent intent = new Intent(FirebaseAuthActivity.this,FirebaseSendMessageActivity.class);
                                         intent.putExtra("uid",uid);

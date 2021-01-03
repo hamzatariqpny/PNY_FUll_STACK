@@ -43,7 +43,7 @@ public class RecyclerViewActvity extends AppCompatActivity {
         ContactViewModel.ContactsLiveData.observe(this,new Observer<List<Contact>>() {
             @Override
             public void onChanged(List<Contact> contacts) {
-                contactAdapter  = new ContactAdapter(RecyclerViewActvity.this,contacts);
+               // contactAdapter  = new ContactAdapter(RecyclerViewActvity.this,contacts);
                 contactRV.setAdapter(contactAdapter);
             }
         });

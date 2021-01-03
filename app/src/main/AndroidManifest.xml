@@ -19,7 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.activity.FirebaseSendMessageActivity"></activity>
+        <activity android:name=".ui.activity.ChatActivity"/>
+        <activity android:name=".ui.activity.UsersActivity"/>
+        <activity android:name=".ui.activity.FirebaseSendMessageActivity" />
         <activity android:name=".ui.activity.FirebaseAuthActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +29,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.retrofit.RetrofitActivity"></activity>
+        <activity android:name=".ui.activity.retrofit.RetrofitActivity" />
         <activity android:name=".ui.activity.JsonActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
