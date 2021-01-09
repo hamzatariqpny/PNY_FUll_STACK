@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -66,6 +67,9 @@ public class UsersActivity extends AppCompatActivity {
 
     public void getUserData() {
 
+        SharedPreferences sharedPreferences = getSharedPreferences("user_pref", MODE_PRIVATE);
+        String userId = sharedPreferences.getString("userId", "");
+
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -74,7 +78,10 @@ public class UsersActivity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
                     User user = dataSnapshot.getValue(User.class);
-                    userArrayList.add(user);
+
+                    if(!userId.equals(user.userId)){
+                        userArrayList.add(user);
+                    }
 
                 }
 

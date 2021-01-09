@@ -17,7 +17,7 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="@dimen/_8sdp"
         android:id="@+id/addUser"
-        android:text="Add new user"/>
+        android:text="User Profile"/>
 
 
 

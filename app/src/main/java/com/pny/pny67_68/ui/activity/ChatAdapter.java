@@ -39,7 +39,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
 
     @Override
     public int getItemViewType(int position) {
-        if (contactModels.get(position).fromMessageId.equals(sharedPreferences.getString("uid", ""))) {
+        if (contactModels.get(position).fromMessageId.equals(sharedPreferences.getString("userId", ""))) {
             return VIEW_TYPE_SENDER;
         } else {
             return VIEW_TYPE_RECIEVER;
@@ -64,7 +64,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
         Chat chat = contactModels.get(position);
 
         holder.senderName.setText(chat.fromMessageName);
-        holder.senderTxt.setText(chat.toMessageName);
+        holder.senderTxt.setText(chat.txtMessage);
 
     }
 
@@ -84,7 +84,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
 
             contactImage = itemView.findViewById(R.id.contactImage);
             senderName = itemView.findViewById(R.id.senderName);
-            senderTxt = itemView.findViewById(R.id.contactNumber);
+            senderTxt = itemView.findViewById(R.id.senderTxt);
 
         }
     }

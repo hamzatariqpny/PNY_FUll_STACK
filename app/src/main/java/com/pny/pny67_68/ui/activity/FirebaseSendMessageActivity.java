@@ -28,8 +28,9 @@ import com.pny.pny67_68.repository.model.User;
 public class FirebaseSendMessageActivity extends AppCompatActivity {
 
     EditText userName , userPhone , userGender;
-    String strName , strPhone , strGender , strUid , StrId;
+    String strName , strPhone , strGender , strUid , StrId , strUserId = "";
     Button  updateUserData;
+    Button  addNewUser;
     Button Logout;
 
 
@@ -41,6 +42,7 @@ public class FirebaseSendMessageActivity extends AppCompatActivity {
         userName = findViewById(R.id.userName);
         userPhone = findViewById(R.id.userPhone);
         userGender = findViewById(R.id.userGendeer);
+        addNewUser = findViewById(R.id.addNewUser);
         updateUserData = findViewById(R.id.updateUserData);
         Logout = findViewById(R.id.Logout);
 
@@ -52,7 +54,7 @@ public class FirebaseSendMessageActivity extends AppCompatActivity {
 
         getUserData(reference);
 
-        updateUserData.setOnClickListener(new View.OnClickListener() {
+        addNewUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -62,7 +64,10 @@ public class FirebaseSendMessageActivity extends AppCompatActivity {
 
                 User user = new User();
 
-                user.setUserId(StrId);
+                if(strUserId.isEmpty()){
+                    user.setUserId(StrId);
+                }
+
                 user.setUserName(strName);
                 user.setUserGender(strGender);
                 user.setUserPhone(strPhone);
@@ -71,10 +76,20 @@ public class FirebaseSendMessageActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("name", strName);
                 editor.putString("Phone", strPhone);
+                editor.putString("userId", user.userId);
                 editor.apply();
 
                 reference.child(strUid).setValue(user);
 
+                startActivity(new Intent(FirebaseSendMessageActivity.this, UsersActivity.class));
+
+            }
+        });
+
+
+        updateUserData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 startActivity(new Intent(FirebaseSendMessageActivity.this, UsersActivity.class));
 
             }
@@ -138,11 +153,22 @@ public class FirebaseSendMessageActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 User user = snapshot.getValue(User.class);
+
                 if(user != null) {
                     userName.setText(user.userName);
                     userPhone.setText(user.userPhone);
                     userGender.setText(user.userGender);
+                    strUserId = user.userId;
+
+                    SharedPreferences sharedPreferences = getSharedPreferences("user_pref",MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("name", user.userName);
+                    editor.putString("Phone", user.userPhone);
+                    editor.putString("userId", user.userId);
+                    editor.apply();
+
                 }
+
 
 
             }

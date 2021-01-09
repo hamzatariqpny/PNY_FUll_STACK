@@ -6,7 +6,7 @@
     tools:context=".ui.activity.RecyclerViewActvity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/contactRV"
+        android:id="@+id/chatRV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/chatLayout" />
