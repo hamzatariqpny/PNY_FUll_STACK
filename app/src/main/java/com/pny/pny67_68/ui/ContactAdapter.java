@@ -57,6 +57,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.contactV
                 Intent intent = new Intent(activity, ChatActivity.class);
                 intent.putExtra("recieverID",user.userId);
                 intent.putExtra("recieverName",user.userName);
+                intent.putExtra("recieverPhone",user.userPhone);
                 activity.startActivity(intent);
             }
         });

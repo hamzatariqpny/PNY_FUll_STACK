@@ -123,6 +123,7 @@ public class FirebaseAuthActivity extends AppCompatActivity {
         if(user != null){
             Intent intent = new Intent(FirebaseAuthActivity.this,FirebaseSendMessageActivity.class);
             intent.putExtra("uid",user.getUid());
+            finish();
             startActivity(intent);
         }else {
             loggedInEmail.setText("No user Logged In");

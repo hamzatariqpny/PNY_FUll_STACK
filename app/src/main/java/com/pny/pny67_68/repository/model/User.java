@@ -8,12 +8,14 @@ public class User implements Serializable  {
     public String userName;
     public String userPhone;
     public String userGender;
+    public String token;
 
-    public User(String userId, String userName, String userPhone, String userGender) {
+    public User(String userId, String userName, String userPhone, String userGender, String token) {
         this.userId = userId;
         this.userName = userName;
         this.userPhone = userPhone;
         this.userGender = userGender;
+        this.token = token;
     }
 
     public User() {
@@ -48,7 +50,16 @@ public class User implements Serializable  {
         return userGender;
     }
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
     public void setUserGender(String userGender) {
         this.userGender = userGender;
     }
 }
+

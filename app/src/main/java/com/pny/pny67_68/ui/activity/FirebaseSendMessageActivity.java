@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -21,6 +23,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.pny.pny67_68.R;
 import com.pny.pny67_68.repository.model.Movies;
 import com.pny.pny67_68.repository.model.User;
@@ -32,7 +37,7 @@ public class FirebaseSendMessageActivity extends AppCompatActivity {
     Button  updateUserData;
     Button  addNewUser;
     Button Logout;
-
+    String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,25 +63,32 @@ public class FirebaseSendMessageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                SharedPreferences sharedPreferences = getSharedPreferences("user_pref",MODE_PRIVATE);
+
                 strName = userName.getText().toString();
                 strPhone = userPhone.getText().toString();
                 strGender = userGender.getText().toString();
 
                 User user = new User();
 
-                if(strUserId.isEmpty()){
+                String userId = sharedPreferences.getString("userId","");
+
+                if(userId.isEmpty()){
                     user.setUserId(StrId);
+                }else {
+                    user.setUserId(userId);
                 }
 
                 user.setUserName(strName);
                 user.setUserGender(strGender);
                 user.setUserPhone(strPhone);
+                user.setToken(token);
 
-                SharedPreferences sharedPreferences = getSharedPreferences("user_pref",MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("name", strName);
                 editor.putString("Phone", strPhone);
                 editor.putString("userId", user.userId);
+                editor.putString("token", user.token);
                 editor.apply();
 
                 reference.child(strUid).setValue(user);
@@ -102,6 +114,8 @@ public class FirebaseSendMessageActivity extends AppCompatActivity {
 
                 FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
+                clearUserPrefs();
+
                 firebaseAuth.signOut();
 
                 FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -111,6 +125,7 @@ public class FirebaseSendMessageActivity extends AppCompatActivity {
                 }
             }
         });
+
 
         Query lastQuery = reference.orderByKey().limitToLast(1);
 
@@ -146,6 +161,12 @@ public class FirebaseSendMessageActivity extends AppCompatActivity {
 
     }
 
+    public void clearUserPrefs(){
+        SharedPreferences sharedPreferences = getSharedPreferences("user_pref",MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear().apply();
+    }
+
     public void getUserData(DatabaseReference reference ){
 
         reference.child(strUid).addValueEventListener(new ValueEventListener() {
@@ -163,6 +184,7 @@ public class FirebaseSendMessageActivity extends AppCompatActivity {
                     SharedPreferences sharedPreferences = getSharedPreferences("user_pref",MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("name", user.userName);
+                    subscribeToToken(user.userPhone);
                     editor.putString("Phone", user.userPhone);
                     editor.putString("userId", user.userId);
                     editor.apply();
@@ -176,6 +198,17 @@ public class FirebaseSendMessageActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(FirebaseSendMessageActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+
+    public void subscribeToToken(String token){
+        FirebaseMessaging.getInstance().subscribeToTopic(token).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Log.d("subscribeToToken",task.toString());
             }
         });
     }

@@ -1,5 +1,8 @@
 package com.pny.pny67_68.repository.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Chat {
 
     public String chatID ="";
@@ -11,7 +14,7 @@ public class Chat {
     public String txtMessage = "";
     public String timeStamp = "";
 
-    public Chat(String chatID, String messageId,String fromMessageId, String fromMessageName, String toMessageId, String toMessageName, String txtMessage, String timeStamp) {
+    public Chat(List<String> testItems,String chatID, String messageId,String fromMessageId, String fromMessageName, String toMessageId, String toMessageName, String txtMessage, String timeStamp) {
         this.chatID = chatID;
         this.messageId = messageId;
         this.fromMessageId = fromMessageId;
@@ -20,6 +23,7 @@ public class Chat {
         this.toMessageName = toMessageName;
         this.txtMessage = txtMessage;
         this.timeStamp = timeStamp;
+
     }
 
     public Chat(){
@@ -89,8 +93,5 @@ public class Chat {
     public void setTimeStamp(String timeStamp) {
         this.timeStamp = timeStamp;
     }
-
-
-
 
 }
