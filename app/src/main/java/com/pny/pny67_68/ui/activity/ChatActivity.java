@@ -21,6 +21,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -64,6 +65,7 @@ public class ChatActivity extends AppCompatActivity {
     String NOTIFICATION_TITLE;
     String NOTIFICATION_MESSAGE;
     String TOPIC;
+    FirebaseAnalytics firebaseAnalytics;
 
 
     @Override
@@ -85,6 +87,8 @@ public class ChatActivity extends AppCompatActivity {
             recieverName = intent.getStringExtra("recieverName");
             recieverPhone = intent.getStringExtra("recieverPhone");
         }
+
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         sharedPreferences = getSharedPreferences("user_pref", MODE_PRIVATE);
 
@@ -125,6 +129,12 @@ public class ChatActivity extends AppCompatActivity {
                     messageRef.child(key).setValue(getChatObj(txtMessage, key, chat_id));
                     sendNotifToUser(senderName,txtMessage);
                     messageText.setText("");
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString("Chat_Id", chat_id);
+                    bundle.putString("User_name", senderName);
+                    bundle.putString("phone", senderPhone);
+                    firebaseAnalytics.logEvent("CHAT_EVENT", bundle);
                 }
 
             }

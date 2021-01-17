@@ -37,6 +37,7 @@ public class FirebaseSendMessageActivity extends AppCompatActivity {
     Button  updateUserData;
     Button  addNewUser;
     Button Logout;
+    Button crashApp;
     String token;
 
     @Override
@@ -48,6 +49,7 @@ public class FirebaseSendMessageActivity extends AppCompatActivity {
         userPhone = findViewById(R.id.userPhone);
         userGender = findViewById(R.id.userGendeer);
         addNewUser = findViewById(R.id.addNewUser);
+        crashApp = findViewById(R.id.crashApp);
         updateUserData = findViewById(R.id.updateUserData);
         Logout = findViewById(R.id.Logout);
 
@@ -125,6 +127,8 @@ public class FirebaseSendMessageActivity extends AppCompatActivity {
                 }
             }
         });
+
+
 
 
         Query lastQuery = reference.orderByKey().limitToLast(1);
