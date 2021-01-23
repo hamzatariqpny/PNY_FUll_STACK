@@ -134,7 +134,7 @@ public class ChatActivity extends AppCompatActivity {
                     bundle.putString("Chat_Id", chat_id);
                     bundle.putString("User_name", senderName);
                     bundle.putString("phone", senderPhone);
-                    firebaseAnalytics.logEvent("CHAT_EVENT", bundle);
+                    firebaseAnalytics.logEvent("chat_event", bundle);
                 }
 
             }

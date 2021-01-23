@@ -13,6 +13,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,8 +44,9 @@ public class FirebaseSendMessageActivity extends AppCompatActivity {
     Button  updateUserData;
     Button  addNewUser;
     Button Logout;
-    Button crashApp;
     String token;
+    private AdView mAdView;
+    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +57,29 @@ public class FirebaseSendMessageActivity extends AppCompatActivity {
         userPhone = findViewById(R.id.userPhone);
         userGender = findViewById(R.id.userGendeer);
         addNewUser = findViewById(R.id.addNewUser);
-        crashApp = findViewById(R.id.crashApp);
         updateUserData = findViewById(R.id.updateUserData);
         Logout = findViewById(R.id.Logout);
+        mAdView = findViewById(R.id.adView);
 
         strUid = getSharedPreferences("user_pref",MODE_PRIVATE).getString("uid","");
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+
+
+            }
+        });
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+
+        mInterstitialAd = new InterstitialAd(FirebaseSendMessageActivity.this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
         DatabaseReference reference = firebaseDatabase.getReference("user");
 
@@ -104,7 +128,12 @@ public class FirebaseSendMessageActivity extends AppCompatActivity {
         updateUserData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(FirebaseSendMessageActivity.this, UsersActivity.class));
+
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                } else {
+                    Log.d("TAG", "The interstitial wasn't loaded yet.");
+                }
 
             }
         });
@@ -128,6 +157,14 @@ public class FirebaseSendMessageActivity extends AppCompatActivity {
             }
         });
 
+
+        mInterstitialAd.setAdListener(new AdListener(){
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+                startActivity(new Intent(FirebaseSendMessageActivity.this, UsersActivity.class));
+            }
+        });
 
 
 
@@ -194,9 +231,6 @@ public class FirebaseSendMessageActivity extends AppCompatActivity {
                     editor.apply();
 
                 }
-
-
-
             }
 
             @Override
