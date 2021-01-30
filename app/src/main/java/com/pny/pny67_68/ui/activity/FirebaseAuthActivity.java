@@ -221,6 +221,7 @@ public class FirebaseAuthActivity extends AppCompatActivity {
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
         if (user != null) {
+
             Intent intent = new Intent(FirebaseAuthActivity.this, FirebaseSendMessageActivity.class);
             intent.putExtra("uid", user.getUid());
             finish();
