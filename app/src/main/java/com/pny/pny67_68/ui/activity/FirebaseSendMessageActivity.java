@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.facebook.login.LoginManager;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -149,11 +150,15 @@ public class FirebaseSendMessageActivity extends AppCompatActivity {
 
                 firebaseAuth.signOut();
 
+                LoginManager.getInstance().logOut();
+
                 FirebaseUser user = firebaseAuth.getCurrentUser();
 
                 if(user == null){
                    finish();
                 }
+
+
             }
         });
 
@@ -168,7 +173,7 @@ public class FirebaseSendMessageActivity extends AppCompatActivity {
 
 
 
-        Query lastQuery = reference.orderByKey().limitToLast(1);
+        Query lastQuery = reference.orderByChild("userId").limitToLast(1);
 
         lastQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
